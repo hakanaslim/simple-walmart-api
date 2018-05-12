@@ -1,0 +1,5 @@
+version: @version@
+walmart:
+  api-key: nrk4gmejgqarjau5t8aj3ygp
+  url: http://api.walmartlabs.com/v1
+  api-format: json
