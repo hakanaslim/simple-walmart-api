@@ -1,8 +1,11 @@
 package com.deolitte.simplewalmartapi.service;
 
+import com.deolitte.simplewalmartapi.model.ProductDto;
+import com.deolitte.simplewalmartapi.model.SearchQueryDto;
+
 public interface ProductService {
 
-    String getProducts();
-    
-    String getProductByItemId(long itemId);
+    SearchQueryDto getProducts();
+
+    ProductDto getProductByItemId(long itemId);
 }

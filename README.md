@@ -27,8 +27,8 @@ http://localhost:8080
 
 ## Endpoints of the api
 
-  * [http://localhost:8080/product](http://localhost:8080/product)
-  * [http://localhost:8080/product/{itemId}](http://localhost:8080/product/{itemId})
+- [http://localhost:8080/product](http://localhost:8080/product)
+- [http://localhost:8080/product/{itemId}](http://localhost:8080/product/{itemId})
 
 
 

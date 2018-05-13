@@ -1,5 +1,8 @@
 package com.deolitte.simplewalmartapi.service;
 
+import com.deolitte.simplewalmartapi.model.ProductDto;
+import com.deolitte.simplewalmartapi.model.SearchQueryDto;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
@@ -7,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
+@Setter
 public class ProductServiceImpl implements ProductService {
 
     @Value("${walmart.api-key}")
@@ -19,38 +23,38 @@ public class ProductServiceImpl implements ProductService {
     public String walmartURL;
 
     @Override
-    public String getProducts() {
+    public SearchQueryDto getProducts() {
 
-        ResponseEntity<String> responseEntity = new RestTemplateBuilder().build().getForEntity(
+        ResponseEntity<SearchQueryDto> responseEntity = new RestTemplateBuilder().build().getForEntity(
                 new StringBuilder()
                         .append(walmartURL).append("/search")
                         .append("?apiKey=").append(walmartApiKey)
                         .append("&format=").append(walmartApiFormat)
                         .append("&query=books")
                         .toString()
-                , String.class);
+                , SearchQueryDto.class);
 
         if (responseEntity.getStatusCode() == HttpStatus.OK)
             return responseEntity.getBody();
 
-        return "";
+        return null;
     }
 
     @Override
-    public String getProductByItemId(long itemId) {
+    public ProductDto getProductByItemId(long itemId) {
 
-        ResponseEntity<String> responseEntity = new RestTemplateBuilder().build().getForEntity(
+        ResponseEntity<ProductDto> responseEntity = new RestTemplateBuilder().build().getForEntity(
                 new StringBuilder()
                         .append(walmartURL).append("/items")
                         .append("/").append(itemId)
                         .append("?apiKey=").append(walmartApiKey)
                         .append("&format=").append(walmartApiFormat)
                         .toString()
-                , String.class);
+                , ProductDto.class);
 
         if (responseEntity.getStatusCode() == HttpStatus.OK)
             return responseEntity.getBody();
 
-        return "";
+        return null;
     }
 }
