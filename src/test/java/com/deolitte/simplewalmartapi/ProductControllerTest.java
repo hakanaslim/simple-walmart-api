@@ -2,7 +2,9 @@ package com.deolitte.simplewalmartapi;
 
 import com.deolitte.simplewalmartapi.controller.ProductController;
 import com.deolitte.simplewalmartapi.model.ProductDto;
+import com.deolitte.simplewalmartapi.model.filter.ProductFilter;
 import com.deolitte.simplewalmartapi.service.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -34,6 +36,17 @@ public class ProductControllerTest {
     }
 
     @Test
+    public void postProducts() throws Exception {
+        ProductFilter productFilter = new ProductFilter();
+        productFilter.setQuery("book");
+
+        mvc.perform(MockMvcRequestBuilders.post("/product")
+                .content(new ObjectMapper().writeValueAsString(productFilter))
+                .contentType(APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
     public void getProduct() throws Exception {
         ProductDto product = new ProductDto();
         product.setItemId(1L);
@@ -43,7 +56,7 @@ public class ProductControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/product/1")
                 .contentType(APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().string("{\"itemId\":1}"));
+                .andExpect(MockMvcResultMatchers.content().string(new ObjectMapper().writeValueAsString(product)));
     }
 
 }

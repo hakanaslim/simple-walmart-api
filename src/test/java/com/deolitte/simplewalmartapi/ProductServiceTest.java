@@ -2,6 +2,7 @@ package com.deolitte.simplewalmartapi;
 
 import com.deolitte.simplewalmartapi.model.ProductDto;
 import com.deolitte.simplewalmartapi.model.SearchQueryDto;
+import com.deolitte.simplewalmartapi.model.filter.ProductFilter;
 import com.deolitte.simplewalmartapi.service.ProductService;
 import com.deolitte.simplewalmartapi.service.ProductServiceImpl;
 import org.junit.Assert;
@@ -49,7 +50,9 @@ public class ProductServiceTest {
 
     @Test
     public void getProducts() {
-        SearchQueryDto productQuery = productService.getProducts();
+        ProductFilter productFilter = new ProductFilter();
+        productFilter.setQuery("book");
+        SearchQueryDto productQuery = productService.findProducts(productFilter);
 
         Assert.assertNotNull(productQuery);
 
@@ -58,7 +61,9 @@ public class ProductServiceTest {
 
     @Test
     public void getAProduct() {
-        SearchQueryDto searchQuery = productService.getProducts();
+        ProductFilter productFilter = new ProductFilter();
+        productFilter.setQuery("book");
+        SearchQueryDto searchQuery = productService.findProducts(productFilter);
 
         Assert.assertNotNull(searchQuery);
 

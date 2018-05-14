@@ -3,6 +3,8 @@ package com.deolitte.simplewalmartapi.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
+import java.util.Collection;
+
 @Getter
 @Setter
 @ToString
@@ -27,4 +29,6 @@ public class ProductDto {
     String productUrl;
     String categoryNode;
     String stock;
+    Collection<ProductImageDto> imageEntities;
+    
 }

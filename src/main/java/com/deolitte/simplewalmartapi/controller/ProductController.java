@@ -2,6 +2,7 @@ package com.deolitte.simplewalmartapi.controller;
 
 import com.deolitte.simplewalmartapi.model.ProductDto;
 import com.deolitte.simplewalmartapi.model.SearchQueryDto;
+import com.deolitte.simplewalmartapi.model.filter.ProductFilter;
 import com.deolitte.simplewalmartapi.service.ProductService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,14 @@ public class ProductController {
     @ResponseBody
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SearchQueryDto> findProducts() {
-        SearchQueryDto products = productService.getProducts();
+        SearchQueryDto products = productService.findProducts(null);
+        return ResponseEntity.ok(products);
+    }
+
+    @ResponseBody
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SearchQueryDto> findProducts(@RequestBody ProductFilter productFilter) {
+        SearchQueryDto products = productService.findProducts(productFilter);
         return ResponseEntity.ok(products);
     }
 
