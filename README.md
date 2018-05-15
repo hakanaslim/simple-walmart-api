@@ -23,9 +23,9 @@ http://localhost:8080
 
 ## Endpoints of the api
 
-- [http://localhost:8080/product](http://localhost:8080/product)
-- [http://localhost:8080/product/{itemId}](http://localhost:8080/product/{itemId})
-- [http://localhost:8080/product/{query}/{startRange}/{endRange}](http://localhost:8080/product/{query}/{startRange}/{endRange})
+- [(GET)http://localhost:8080/product](http://localhost:8080/product)
+- [(GET)http://localhost:8080/product/{itemId}](http://localhost:8080/product/{itemId})
+- [(POST)http://localhost:8080/product ( body:{ProductFilter} )](http://localhost:8080/product)
 
 
 
